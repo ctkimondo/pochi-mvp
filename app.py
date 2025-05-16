@@ -98,7 +98,7 @@ def view_doc(doc_id):
       <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body class="bg-gray-100 min-h-screen flex flex-col justify-start items-center px-4 py-8">
-      <div class="bg-white p-6 rounded-xl shadow max-w-lg w-full">
+      <div class="bg-white p-6 rounded-xl shadow w-full max-w-lg">
         <h2 class="text-2xl font-semibold mb-4 text-gray-800">Document Verification</h2>
         <p class="mb-2"><strong>Filename:</strong> {doc.filename}</p>
         <p class="mb-4"><strong>Status:</strong> <span class="{color} text-lg">{status}</span></p>
