@@ -120,7 +120,7 @@ def view_doc(doc_id):
             </a>
 
             <div class="text-center pt-4">
-            <p class="text-sm text-gray-600 mb-2">Scan to verify again:</p>
+            <p class="text-sm text-gray-600 mb-2">Scan to view:</p>
             <img src="{qr_url}" alt="QR Code" class="mx-auto w-40 h-40" />
             </div>
         </div>
