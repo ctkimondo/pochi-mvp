@@ -89,29 +89,45 @@ def view_doc(doc_id):
     qr_url = url_for('generate_qr', doc_id=doc.doc_id)
 
     return f"""
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <title>Pochi Verification</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <body class="bg-gray-100 min-h-screen flex flex-col justify-start items-center px-4 py-8">
-      <div class="bg-white p-6 rounded-xl shadow w-full max-w-lg">
-        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Document Verification</h2>
-        <p class="mb-2"><strong>Filename:</strong> {doc.filename}</p>
-        <p class="mb-4"><strong>Status:</strong> <span class="{color} text-lg">{status}</span></p>
-        <a href="{file_url}" target="_blank" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">View Document</a>
-        <div class="mt-6 text-center">
-          <p class="text-sm text-gray-600 mb-2">Scan to view:</p>
-          <img src="{qr_url}" alt="QR Code" class="mx-auto w-40 h-40">
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Pochi Verification</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        </head>
+        <body class="bg-gray-100 min-h-screen px-4 py-8 flex items-center justify-center">
+        <div class="w-full max-w-md bg-white shadow-xl rounded-xl p-6 space-y-6">
+            <div class="text-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Document Verification</h2>
+            <p class="text-sm text-gray-500 mb-4">Powered by Pochi</p>
+            </div>
+
+            <div class="space-y-1">
+            <p class="text-sm text-gray-600">Filename:</p>
+            <p class="text-lg font-medium">{doc.filename}</p>
+            </div>
+
+            <div class="space-y-1">
+            <p class="text-sm text-gray-600">Status:</p>
+            <p class="text-lg font-bold {color}">{status}</p>
+            </div>
+
+            <a href="{file_url}" target="_blank"
+            class="block w-full text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+            View Document
+            </a>
+
+            <div class="text-center pt-4">
+            <p class="text-sm text-gray-600 mb-2">Scan to verify again:</p>
+            <img src="{qr_url}" alt="QR Code" class="mx-auto w-40 h-40" />
+            </div>
         </div>
-        <p class="text-xs text-gray-400 mt-6 text-center">Powered by <strong>Pochi</strong> — A Trust Infrastructure MVP</p>
-      </div>
-    </body>
-    </html>
+        </body>
+        </html>
     """
+
 
 @app.route('/qrcode/<doc_id>')
 def generate_qr(doc_id):
