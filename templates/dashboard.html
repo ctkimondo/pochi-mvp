@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pochi Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen py-6 px-4">
+  <div class="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-semibold">Welcome, {{ email }}</h2>
+      <a href="/logout" class="text-red-500 hover:underline">Logout</a>
+    </div>
+
+    <h3 class="text-lg font-medium mb-2">Upload a new document</h3>
+    <form method="post" enctype="multipart/form-data" action="/upload" class="flex space-x-2 mb-6">
+      <input type="file" name="document" required
+             class="border border-gray-300 px-3 py-2 rounded w-full">
+      <input type="submit" value="Upload"
+             class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+    </form>
+
+    <h3 class="text-lg font-medium mb-2">Your Documents</h3>
+    <ul class="space-y-3">
+      {% for doc in documents %}
+        <li class="border-b pb-2 flex justify-between items-center">
+          <div>
+            <span class="font-medium">{{ doc.filename }}</span>
+            <span class="ml-2 {{ 'text-green-600' if doc.verified else 'text-red-500' }}">
+              {{ 'Verified' if doc.verified else 'Not Verified' }}
+            </span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <a href="{{ url_for('view_doc', doc_id=doc.doc_id) }}" class="text-blue-600 hover:underline">View</a>
+            <form method="post" action="/delete/{{ doc.doc_id }}">
+              <button type="submit" class="text-red-500 hover:underline">🗑️</button>
+            </form>
+          </div>
+        </li>
+      {% else %}
+        <li>No documents uploaded yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>

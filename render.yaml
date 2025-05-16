@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: pochi
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+    plan: free
