@@ -104,7 +104,7 @@ def view_doc(doc_id):
         <p class="mb-4"><strong>Status:</strong> <span class="{color} text-lg">{status}</span></p>
         <a href="{file_url}" target="_blank" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">View Document</a>
         <div class="mt-6 text-center">
-          <p class="text-sm text-gray-600 mb-2">Scan to verify:</p>
+          <p class="text-sm text-gray-600 mb-2">Scan to view:</p>
           <img src="{qr_url}" alt="QR Code" class="mx-auto w-40 h-40">
         </div>
         <p class="text-xs text-gray-400 mt-6 text-center">Powered by <strong>Pochi</strong> — A Trust Infrastructure MVP</p>
